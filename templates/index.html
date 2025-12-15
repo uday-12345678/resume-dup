@@ -260,14 +260,39 @@
 
             <div class="card">
                 <h3>Personalized Learning Roadmap</h3>
-                <ul class="roadmap">
-                    {% for item in result.roadmap %}
-                    <li>
-                        <strong>{{ item.week }}</strong><br>
+
+                {% for item in result.roadmap %}
+                <div class="roadmap-item">
+                    <p>
+                        <strong>{{ item.week }}</strong>
+                    </p>
+                    <p>
                         <b>{{ item.skill }}</b>: {{ item.description }}
-                    </li>
-                    {% endfor %}
-                </ul>
+                    </p>
+                    {% if item.links.websites %}
+                    <p><b>Websites:</b></p>
+                    <ul>
+                        {% for name, link in item.links.websites %}
+                        <li>
+                            <a href="{{ link }}" target="_blank">{{ name }}</a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+
+                    {% if item.links.youtube %}
+                    <p><b>YouTube Channels:</b></p>
+                    <ul>
+                        {% for name, link in item.links.youtube %}
+                        <li>
+                            <a href="{{ link }}" target="_blank">{{ name }}</a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+
+                </div>
+                {% endfor %}
             </div>
 
             {% if result.projects|length > 0 %}
