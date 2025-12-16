@@ -133,6 +133,27 @@ LEARNING_LINKS = {
             ("Khan Academy", "https://www.youtube.com/@khanacademy")
         ]
     },
+    
+    "scikit-learn": {
+        "websites": [
+            ("GeeksforGeeks Scikit-Learn", "https://www.geeksforgeeks.org/machine-learning/scikit-learn-tutorial/"),
+            ("W3Schools ML Tutorial", "https://www.w3schools.com/python/python_ml_getting_started.asp")
+        ],
+        "youtube": [
+            ("StatQuest", "https://www.youtube.com/@statquest"),
+            ("Krish Naik", "https://www.youtube.com/@krishnaik06")
+        ]
+    },
+    "model evaluation": {
+        "websites": [
+            ("Scikit-Learn Metrics", "https://scikit-learn.org/stable/modules/model_evaluation.html"),
+            ("GeeksforGeeks Model Eval Metrics", "https://www.geeksforgeeks.org/machine-learning/machine-learning-model-evaluation/")
+        ],
+        "youtube": [
+            ("StatQuest Model Evaluation Playlist", "https://www.youtube.com/playlist?list=PLblh5JKOoLUIxGDQs4L_ffmJ2rGHhHPLR"),
+            ("Amit Sharma Confusion Matrix", "https://www.youtube.com/watch?v=85dtiMz9tSo")
+        ]
+    },
 
     "data analysis": {
         "websites": [
@@ -159,7 +180,7 @@ LEARNING_LINKS = {
     "pandas": {
         "websites": [
             ("Pandas Docs", "https://pandas.pydata.org/docs/"),
-            ("GeeksforGeeks", "https://www.geeksforgeeks.org/python-pandas/")
+            ("GeeksforGeeks", "https://www.geeksforgeeks.org/pandas/pandas-tutorial/")
         ],
         "youtube": [
             ("Data School", "https://www.youtube.com/@DataSchool"),
@@ -425,7 +446,7 @@ LEARNING_LINKS = {
     "kubernetes": {
         "websites": [
             ("Kubernetes Docs", "https://kubernetes.io/docs/home/"),
-            ("GeeksforGeeks", "https://www.geeksforgeeks.org/kubernetes/")
+            ("GeeksforGeeks", "https://www.geeksforgeeks.org/devops/kubernetes-tutorial/")
         ],
         "youtube": [
             ("TechWorld with Nana", "https://www.youtube.com/@TechWorldwithNana"),
