@@ -210,6 +210,81 @@
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
         }
 
+        .missing-skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+        .missing-skill-card {
+            background: linear-gradient(135deg, #c62828, #ef5350);
+            color: white;
+            padding: 10px 14px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 14px;
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .missing-skill-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+        }
+
+        .upload-box {
+            border: 2px dashed #e53935;
+            border-radius: 14px;
+            padding: 30px;
+            text-align: center;
+            background: #fff5f5;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .upload-box:hover {
+            background: #ffecec;
+            transform: translateY(-2px);
+        }
+
+        .upload-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #e53935;
+            color: white;
+            padding: 16px 40px;
+            border-radius: 12px;
+            font-size: 20px;
+            font-weight: 700;
+            box-shadow: 0 10px 25px rgba(229, 57, 53, 0.4);
+        }
+
+        .upload-btn span {
+            font-size: 24px;
+        }
+        .upload-subtext {
+            margin-top: 12px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .upload-box input[type="file"] {
+            display: none;
+        }
+
+        .file-name {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #2e7d32;
+            font-weight: 600;
+            display: none;
+        }
+
     </style>
 </head>
 
@@ -224,7 +299,21 @@
         <div class="form-box">
             <form method="POST" enctype="multipart/form-data">
                 <label>Upload Resume (PDF)</label>
-                <input type="file" name="resume" required>
+
+                <label class="upload-box">
+
+                    <div class="upload-btn">
+                        <span>📄</span>
+                        Select PDF File
+                    </div>
+
+                    <div class="upload-subtext">or drop PDF here</div>
+
+                    <div class="file-name" id="fileName">File selected</div>
+
+                    <input type="file" name="resume" accept=".pdf" required onchange="showFileName(this)">
+                </label>
+
 
                 <label>Select Target Job Role</label>
                 <select name="role" required>
@@ -280,12 +369,22 @@
 
             <div class="card">
                 <h3>Missing Skills</h3>
-                <ul>
+
+                {% if result.missing_skills and result.missing_skills|length > 0 %}
+                <div class="missing-skills-grid">
                     {% for skill in result.missing_skills %}
-                    <li>{{ skill }}</li>
+                    <div class="missing-skill-card">
+                        {{ skill }}
+                    </div>
                     {% endfor %}
-                </ul>
+                </div>
+                {% else %}
+                <p style="color:#777; font-style: italic;">
+                    No missing skills for the selected job role.
+                </p>
+                {% endif %}
             </div>
+
 
             <div class="card">
                 <h3>Personalized Learning Roadmap</h3>
@@ -404,6 +503,17 @@
                     clearInterval(progress);
                 }
             }, speed);
+        }
+
+        function showFileName(input) {
+            const fileNameDiv = document.getElementById("fileName");
+            const checkmark = document.querySelector(".checkmark");
+
+            if (input.files && input.files.length > 0) {
+                fileNameDiv.textContent = "Selected: " + input.files[0].name;
+                fileNameDiv.style.display = "block";
+                checkmark.style.display = "flex";
+            }
         }
     </script>
 
