@@ -254,6 +254,16 @@ LEARNING_LINKS = {
             ("Academind", "https://www.youtube.com/@Academind")
         ]
     },
+    "rest": {
+        "websites": [
+            ("REST API Tutorial", "https://restfulapi.net/"),
+            ("GeeksforGeeks", "https://www.geeksforgeeks.org/rest-api-introduction/")
+        ],
+        "youtube": [
+            ("Web Dev Simplified", "https://www.youtube.com/@WebDevSimplified"),
+            ("Traversy Media", "https://www.youtube.com/@TraversyMedia")
+        ]
+    },
     "mongodb": {
         "websites": [
             ("MongoDB Docs", "https://www.mongodb.com/docs/"),
