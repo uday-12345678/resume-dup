@@ -234,6 +234,26 @@ LEARNING_LINKS = {
         ]
     },
 
+    "express": {
+        "websites": [
+            ("Express.js Official Docs", "https://expressjs.com/"),
+            ("GeeksforGeeks", "https://www.geeksforgeeks.org/express-js/")
+        ],
+        "youtube": [
+            ("Traversy Media", "https://www.youtube.com/@TraversyMedia"),
+            ("Academind", "https://www.youtube.com/@Academind")
+        ]
+    },
+    "api": {
+        "websites": [
+            ("Postman Learning Center", "https://learning.postman.com/"),
+            ("GeeksforGeeks", "https://www.geeksforgeeks.org/rest-api-introduction/")
+    ],
+        "youtube": [
+            ("Traversy Media", "https://www.youtube.com/@TraversyMedia"),
+            ("Academind", "https://www.youtube.com/@Academind")
+        ]
+    },
     "mongodb": {
         "websites": [
             ("MongoDB Docs", "https://www.mongodb.com/docs/"),
