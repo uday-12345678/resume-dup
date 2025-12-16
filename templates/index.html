@@ -185,6 +185,31 @@
             color: #c33764;
             margin-bottom: 6px;
         }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+        .skill-card {
+            background: linear-gradient(135deg, #1d2671, #3949ab);
+            color: white;
+            padding: 10px 14px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 14px;
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+        }
+
     </style>
 </head>
 
@@ -238,9 +263,13 @@
                 <h3>Matched Skills</h3>
 
                 {% if result.matched_skills and result.matched_skills|length > 0 %}
-                {% for skill in result.matched_skills %}
-                <span class="badge">{{ skill }}</span>
-                {% endfor %}
+                <div class="skills-grid">
+                    {% for skill in result.matched_skills %}
+                    <div class="skill-card">
+                        {{ skill }}
+                    </div>
+                    {% endfor %}
+                </div>
                 {% else %}
                 <p style="color:#777; font-style: italic;">
                     No matched skills found for the selected job role.
