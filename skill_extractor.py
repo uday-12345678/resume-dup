@@ -4,25 +4,26 @@ import re
 SKILL_ALIASES = {
     "java": ["java", "core java", "java se", "java ee", "jdk"],
     "python": ["python", "python3", "python programming"],
-    "c++": ["c++", "cpp"],
+    "c++": ["c++", "cpp", "C++"],
     "data structures": ["data structures", "ds", "dsa"],
     "algorithms": ["algorithms", "algo"],
     "sql": ["sql", "mysql", "postgresql", "oracle sql"],
-    "excel": ["excel", "ms excel", "microsoft excel","Excel"],
+    "excel": ["excel", "ms excel", "microsoft excel"],
     "power bi": ["power bi", "powerbi","Power Bi"],
     "tableau": ["tableau"],
-    "html": ["html", "html5","HTML"],
-    "css": ["css", "css3","CSS"],
+    "html": ["html", "html5"],
+    "css": ["css", "css3"],
     "javascript": ["javascript", "js","Java Script"],
-    "react": ["react", "reactjs","react.js","React.js"],
-    "node": ["node", "nodejs","node.js","Node.js"],
+    "react": ["react", "reactjs", "react.js","React.js"],
+    "node": ["node", "nodejs", "node.js","Node.js"],
     "mongodb": ["mongodb", "mongo db"],
-    "machine learning": ["machine learning", "ml","Machine Learning"],
+    "machine learning": ["machine learning", "ml"],
     "deep learning": ["deep learning", "dl"],
     "statistics": ["statistics", "statistical analysis"],
     "data analysis": ["data analysis", "data analytics"],
     "git": ["git", "git version control"],
-    "express": ["express", "expressjs", "express.js","Express.js"]
+    "express": ["express", "expressjs", "express.js","Express.js"],
+    "object oriented programming": ["object oriented programming", "oops","OOPS", "object-oriented programming","Object Oriented Programming"]
 }
 
 def extract_skills(text):
@@ -37,4 +38,3 @@ def extract_skills(text):
                 break
 
     return list(set(found_skills))
-
