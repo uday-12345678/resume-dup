@@ -1,7 +1,6 @@
 from flask import Flask, render_template, request
 import os
 import tempfile
-
 from werkzeug.utils import secure_filename
 
 from resume_parser import extract_text_from_pdf
@@ -12,59 +11,68 @@ from roadmap_generator import generate_roadmap
 from project_recommender import recommend_projects
 
 app = Flask(__name__)
-# Use a temp directory for uploads (serverless-friendly). Can be overridden by env var.
+
+# Use a temp directory for uploads (serverless-friendly)
 app.config["UPLOAD_FOLDER"] = os.environ.get(
     "UPLOAD_FOLDER",
     os.path.join(tempfile.gettempdir(), "uploads")
 )
 
 # Ensure uploads folder exists
-if not os.path.exists(app.config["UPLOAD_FOLDER"]):
-    os.makedirs(app.config["UPLOAD_FOLDER"], exist_ok=True)
+os.makedirs(app.config["UPLOAD_FOLDER"], exist_ok=True)
+
 
 @app.route("/", methods=["GET", "POST"])
 def index():
-    result = None
-    selected_role = None
+    # 👉 GET request → show upload page
+    if request.method == "GET":
+        return render_template(
+            "index.html",
+            roles=JOB_ROLES.keys()
+        )
 
-    if request.method == "POST":
-        file = request.files.get("resume")
-        role = request.form.get("role")
-        selected_role = role
+    # 👉 POST request → analyze resume and show result page
+    file = request.files.get("resume")
+    role = request.form.get("role")
 
-        if file and role and file.filename:
-            filename = secure_filename(file.filename)
-            file_path = os.path.join(app.config["UPLOAD_FOLDER"], filename)
-            file.save(file_path)
+    if not file or not role or not file.filename:
+        # Safety fallback
+        return render_template(
+            "index.html",
+            roles=JOB_ROLES.keys()
+        )
 
-            resume_text = extract_text_from_pdf(file_path)
-            resume_skills = extract_skills(resume_text)
+    filename = secure_filename(file.filename)
+    file_path = os.path.join(app.config["UPLOAD_FOLDER"], filename)
+    file.save(file_path)
 
-            role_skills = JOB_ROLES.get(role, [])
-            analysis = analyze_skills(resume_skills, role_skills)
+    # Resume processing
+    resume_text = extract_text_from_pdf(file_path)
+    resume_skills = extract_skills(resume_text)
 
-            # Learning roadmap
-            roadmap = generate_roadmap(analysis["missing_skills"])
-            analysis["roadmap"] = roadmap
+    role_skills = JOB_ROLES.get(role, [])
+    analysis = analyze_skills(resume_skills, role_skills)
 
-            # Project recommendations (only if match < 50%)
-            analysis["projects"] = recommend_projects(
-                analysis["missing_skills"],
-                analysis["match_percentage"],
-                max_projects=3
-            )
+    # Learning roadmap
+    analysis["roadmap"] = generate_roadmap(
+        analysis["missing_skills"]
+    )
 
-            analysis["role"] = role
-            analysis["filename"] = filename
+    # Project recommendations (only if match < threshold)
+    analysis["projects"] = recommend_projects(
+        analysis["missing_skills"],
+        analysis["match_percentage"],
+        max_projects=3
+    )
 
-            result = analysis
+    analysis["role"] = role
+    analysis["filename"] = filename
 
     return render_template(
-        "index.html",
-        result=result,
-        roles=JOB_ROLES.keys(),
-        selected_role=selected_role
+        "result.html",
+        result=analysis
     )
+
 
 if __name__ == "__main__":
     app.run(debug=True)
