@@ -307,6 +307,49 @@ LEARNING_LINKS = {
             ("Academind", "https://www.youtube.com/@Academind")
         ]
     },
+    
+    "cloud computing": {
+        "websites": [
+            ("GeeksforGeeks Cloud Computing", "https://www.geeksforgeeks.org/cloud-computing/"),
+            ("TutorialsPoint Cloud Computing", "https://www.tutorialspoint.com/cloud_computing/index.htm")
+        ],
+        "youtube": [
+            ("Simplilearn Cloud Computing", "https://www.youtube.com/watch?v=RWgW-CgdIk0"),
+            ("Great Learning Cloud Basics", "https://www.youtube.com/watch?v=EN4fEbcFZ_E")
+        ]
+    },
+
+    "google cloud": {
+        "websites": [
+            ("Google Cloud Documentation", "https://cloud.google.com/docs"),
+            ("GeeksforGeeks Google Cloud", "https://www.geeksforgeeks.org/devops/google-cloud-platform-tutorial/")
+        ],
+        "youtube": [
+            ("Google Cloud Tech", "https://www.youtube.com/@GoogleCloudTech"),
+            ("Simplilearn Google Cloud", "https://www.youtube.com/watch?v=JPn2xF0tboc")
+        ]
+    },
+    
+    "networking": {
+        "websites": [
+            ("GeeksforGeeks Computer Networks", "https://www.geeksforgeeks.org/computer-network-tutorials/"),
+            ("TutorialsPoint Computer Networks", "https://www.tutorialspoint.com/computer_networks/index.htm")
+        ],
+        "youtube": [
+            ("PowerCert Animated Videos", "https://www.youtube.com/@PowerCertAnimatedVideos"),
+            ("Neso Academy Computer Networks", "https://www.youtube.com/@nesoacademy")
+        ]
+    },
+    "security": {
+        "websites": [
+            ("GeeksforGeeks Cyber Security", "https://www.geeksforgeeks.org/computer-networks/network-security/"),
+            ("TutorialsPoint Cyber Security", "https://www.tutorialspoint.com/cyber_security/index.htm")
+        ],
+        "youtube": [
+            ("HackerSploit", "https://www.youtube.com/@HackerSploit"),
+            ("Simplilearn Cyber Security", "https://www.youtube.com/watch?v=U_P23SqJaDc")
+        ]
+    },
 
     # ================= Mobile Development =================
     "android": {
