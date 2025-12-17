@@ -198,6 +198,27 @@ LEARNING_LINKS = {
             ("Corey Schafer", "https://www.youtube.com/@coreyms")
         ]
     },
+    
+    "deep learning": {
+        "websites": [
+            ("DeepLearning.AI", "https://www.deeplearning.ai/"),
+            ("GeeksforGeeks Deep Learning", "https://www.geeksforgeeks.org/deep-learning/")
+        ],
+        "youtube": [
+            ("Krish Naik Deep Learning", "https://www.youtube.com/@krishnaik06"),
+            ("Simplilearn Deep Learning", "https://www.youtube.com/watch?v=aircAruvnKk")
+        ]
+    },
+    "data preprocessing": {
+        "websites": [
+            ("GeeksforGeeks Data Preprocessing", "https://www.geeksforgeeks.org/machine-learning/ml-understanding-data-processing/"),
+            ("Scikit-learn Preprocessing Docs", "https://scikit-learn.org/stable/modules/preprocessing.html")
+        ],
+        "youtube": [
+            ("Krish Naik Data Preprocessing", "https://www.youtube.com/watch?v=GfZJ8Qfzy1I"),
+            ("CodeBasics Data Processing", "https://www.youtube.com/@codebasics")
+        ]
+    },
 
     # ================= Web Development =================
     "html": {
