@@ -33,61 +33,76 @@ def index():
             roles=JOB_ROLES.keys()
         )
 
-    # 🔹 POST request → analyze resume or JD URL
+    # 🔹 POST request → process analysis
+    mode = request.form.get("mode", "role")   # role | jd
     file = request.files.get("resume")
-    jd_url = request.form.get("jd_url")
     role = request.form.get("role")
+    jd_url = request.form.get("jd_url")
+    jd_text = request.form.get("jd_text")
 
-    # Role is mandatory
-    if not role:
+    # Resume is mandatory in all modes
+    if not file or not file.filename:
         return render_template(
             "index.html",
             roles=JOB_ROLES.keys()
         )
 
-    # Decide input source
-    input_text = ""
-    filename = None
+    # Save resume
+    filename = secure_filename(file.filename)
+    file_path = os.path.join(app.config["UPLOAD_FOLDER"], filename)
+    file.save(file_path)
 
-    if file and file.filename:
-        filename = secure_filename(file.filename)
-        file_path = os.path.join(app.config["UPLOAD_FOLDER"], filename)
-        file.save(file_path)
+    # Extract resume skills
+    resume_text = extract_text_from_pdf(file_path)
+    resume_skills = extract_skills(resume_text)
 
-        input_text = extract_text_from_pdf(file_path)
+    # 🔹 MODE 1: Job Description Mode (NEW)
+    if mode == "jd":
 
-    elif jd_url:
-        input_text = extract_text_from_url(jd_url)
+        # JD text has higher priority than URL
+        if jd_text and jd_text.strip():
+            jd_content = jd_text
+        elif jd_url and jd_url.strip():
+            jd_content = extract_text_from_url(jd_url)
+        else:
+            return render_template(
+                "index.html",
+                roles=JOB_ROLES.keys()
+            )
 
+        jd_skills = extract_skills(jd_content)
+        analysis = analyze_skills(resume_skills, jd_skills)
+        analysis["role"] = "Job Description Based Analysis"
+
+    # 🔹 MODE 2: Job Role Mode (UNCHANGED)
     else:
-        # Neither resume nor JD URL provided
-        return render_template(
-            "index.html",
-            roles=JOB_ROLES.keys()
-        )
+        if not role:
+            return render_template(
+                "index.html",
+                roles=JOB_ROLES.keys()
+            )
 
-    # Extract skills from input text
-    input_skills = extract_skills(input_text)
+        role_skills = JOB_ROLES.get(role, [])
+        analysis = analyze_skills(resume_skills, role_skills)
+        analysis["role"] = role
 
-    # Analyze against selected role
-    role_skills = JOB_ROLES.get(role, [])
-    analysis = analyze_skills(input_skills, role_skills)
-
-    # Generate learning roadmap
+    # 🔹 Common post-processing (UNCHANGED)
     analysis["roadmap"] = generate_roadmap(
         analysis["missing_skills"]
     )
 
-    # Recommend projects (only if match < threshold)
     analysis["projects"] = recommend_projects(
         analysis["missing_skills"],
         analysis["match_percentage"],
         max_projects=3
     )
 
-    analysis["role"] = role
     analysis["filename"] = filename
-    analysis["input_type"] = "Resume PDF" if filename else "Job Description URL"
+    analysis["input_type"] = (
+        "Resume + Job Description"
+        if mode == "jd"
+        else "Resume + Job Role"
+    )
 
     return render_template(
         "result.html",
@@ -96,4 +111,4 @@ def index():
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
