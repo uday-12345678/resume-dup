@@ -169,7 +169,7 @@ LEARNING_LINKS = {
     "data visualization": {
         "websites": [
             ("Storytelling with Data", "https://www.storytellingwithdata.com/"),
-            ("GeeksforGeeks", "https://www.geeksforgeeks.org/data-visualization/")
+            ("GeeksforGeeks", "https://www.geeksforgeeks.org/data-visualization/python-data-visualization-tutorial/")
         ],
         "youtube": [
             ("Tableau Tim", "https://www.youtube.com/@TableauTim"),
