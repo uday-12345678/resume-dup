@@ -2,18 +2,18 @@ import re
 
 # Canonical skill → possible variations
 SKILL_ALIASES = {
-    "java": ["java", "core java", "java se", "java ee", "jdk"],
-    "python": ["python", "python3", "python programming"],
+    "java": ["java", "JAVA","Java","core java", "java se", "java ee", "jdk"],
+    "python": ["python","Python","PYTHON", "python3", "python programming"],
     "c++": ["c++", "cpp", "C++"],
     "data structures": ["data structures", "ds", "dsa"],
     "algorithms": ["algorithms", "algo"],
-    "sql": ["sql", "mysql", "postgresql", "oracle sql"],
+    "sql": ["sql","SQL","Sql","MySQL", "PostgreSQL", "Oracle SQL"],
     "excel": ["excel", "ms excel", "microsoft excel"],
-    "power bi": ["power bi", "powerbi","Power Bi"],
+    "power bi": ["power bi", "powerbi","Power Bi","POWER BI", "power bi desktop","Power BI"],
     "tableau": ["tableau"],
     "html": ["html", "html5"],
     "css": ["css", "css3"],
-    "javascript": ["javascript", "js","Java Script"],
+    "javascript": ["javascript", "js","Java Script","JavaScript"],
     "react": ["react", "reactjs", "react.js","React.js"],
     "node": ["node", "nodejs", "node.js","Node.js"],
     "mongodb": ["mongodb", "mongo db"],
@@ -22,6 +22,7 @@ SKILL_ALIASES = {
     "statistics": ["statistics", "statistical analysis"],
     "data analysis": ["data analysis", "data analytics"],
     "git": ["git", "git version control"],
+    "tensorflow": ["tensorflow", "tf","TensorFlow"],
     "express": ["express", "expressjs", "express.js","Express.js"],
     "object oriented programming": ["object oriented programming", "oops","OOPS", "object-oriented programming","Object Oriented Programming"]
 }
