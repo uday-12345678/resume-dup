@@ -7,7 +7,7 @@ SKILL_ALIASES = {
     "c++": ["c++", "cpp", "C++"],
     "data structures": ["data structures", "ds", "dsa"],
     "algorithms": ["algorithms", "algo"],
-    "sql": ["sql","SQL","Sql","MySQL", "PostgreSQL", "Oracle SQL"],
+    "sql": ["sql","SQL","Sql","MySQL", "PostgreSQL", "Oracle SQL","MYSQL"],
     "excel": ["excel", "ms excel", "microsoft excel"],
     "power bi": ["power bi", "powerbi","Power Bi","POWER BI", "power bi desktop","Power BI"],
     "tableau": ["tableau"],
